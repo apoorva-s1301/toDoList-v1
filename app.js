@@ -19,20 +19,21 @@ app.get("/",function(req,res)
 
 app.get("/list2",function(req,res)
 {
-    const day = date.getDate();
+    const day = date.getDay();
     res.render("list",{listTitle : "List 2", day: day, items : list2items });
 });
 
 app.post("/",function(req,res)
 {   
     const item = req.body.newItem;
-    if(req.body.list == "List 2"){
-        list2items.push(item);
-        res.redirect("/list2");
+    if(req.body.list === "List 1"){
+        list1items.push(item);
+        res.redirect("/");
     }
     else{
-        list1items.push(item);
-        res.render("/");
+        console.log(item);
+        list2items.push(item);
+        res.redirect("/list2");
     }
 });
 
